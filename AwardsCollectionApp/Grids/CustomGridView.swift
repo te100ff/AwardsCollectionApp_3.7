@@ -9,10 +9,6 @@ import SwiftUI
 
 struct CustomGridView<Content: View, T>: View {
     let items: [T]
-//    var itemSize: T {
-//        UIScreen.main.bounds.width / CGFloat(columns) as! T
-//    }
-   
     let columns: Int
     let content: (T, CGFloat) -> Content
     var rows: Int {
@@ -29,7 +25,6 @@ struct CustomGridView<Content: View, T>: View {
                             ForEach(0..<columns) { columnIndex in
                                 if let index = indexFor(row: rowIndex, column: columnIndex) {
                                     content(items[index], sideSize)
-                                       // .frame(width: sideSize, height: sideSize)
                                 } else {
                                     Spacer()
                                 }
@@ -51,6 +46,7 @@ struct CustomGridView_Previews: PreviewProvider {
     static var previews: some View {
         CustomGridView(items: [11, 3, 7, 17, 5, 2, 1], columns: 3) { item, itemSize  in
             Text("\(item)")
+                .frame(width: itemSize, height: itemSize)
         }
     }
 }
